@@ -1,4 +1,4 @@
-local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/ThatSiick/Lib/main/Main")()
+local DiscordLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/Lib/main/Main"))()
 
 local win = DiscordLib:Window("BEST MM2 SCRIPT HUB")
 
@@ -22,6 +22,7 @@ for _, script in ipairs(scripts) do
     scriptHubChannel:Button(script.name, function()
         loadstring(script.loadstring)()
         DiscordLib:Notification("Notification", script.name .. " executed!", "Okay!")
+        wait(1) -- Ajout du délai de 1 seconde après l'exécution du script
     end)
 end
 

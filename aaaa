@@ -1,0 +1,38 @@
+local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/ThatSiick/Lib/main/Main")()
+
+local win = DiscordLib:Window("BEST MM2 SCRIPT HUB")
+
+-- Creating the "SCRIPT HUB" server and channel
+local scriptHubServer = win:Server("Script Hub", "")
+local scriptHubChannel = scriptHubServer:Channel("Scripts")
+
+-- Adding buttons to the "SCRIPT HUB" channel
+local scripts = {
+    {name = "Highlight Hub", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/HighLightMM2/main/Main"))()'},
+    {name = "Nexus Hub", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/NexusHub/main/Main"))()'},
+    {name = "Symphony Hub", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/Symphony-Hub/main/Main"))()'},
+    {name = "Highlight Hub (Lite for autofarm)", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/HighlightHubLight/main/Main"))()'},
+    {name = "Anti AFK", loadstring = 'loadstring(game:HttpGet("https://pastebin.com/raw/81e8th8J"))()'},
+    {name = "YARHM", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/yarhm/main/Main"))()'},
+    {name = "Overdrive H", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/OverdriveH-TEST-/main/Main"))()'},
+    {name = "RETH PRIV", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/OverdriveH-TEST-/main/Main"))()'}
+}
+
+for _, script in ipairs(scripts) do
+    scriptHubChannel:Button(script.name, function()
+        loadstring(script.loadstring)()
+        DiscordLib:Notification("Notification", script.name .. " executed!", "Okay!")
+    end)
+end
+
+-- Creating the "Other" server and channel
+local otherServer = win:Server("Other", "")
+local otherChannel = otherServer:Channel("Credits")
+
+-- Adding a label with credits
+otherChannel:Label("Credits : Devi :)")
+
+-- Adding a button to remove the UI
+otherChannel:Button("Remove", function()
+    game.CoreGui.ScreenGui:Destroy()
+end)

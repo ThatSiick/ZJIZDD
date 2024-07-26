@@ -2,27 +2,28 @@ local DiscordLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Th
 
 local win = DiscordLib:Window("BEST MM2 SCRIPT HUB")
 
--- Creating the "SCRIPT HUB" server and channel
-local scriptHubServer = win:Server("Script Hub", "")
-local scriptHubChannel = scriptHubServer:Channel("Scripts")
-
--- Adding buttons to the "SCRIPT HUB" channel
+-- Liste des scripts avec noms, descriptions et loadstrings
 local scripts = {
-    {name = "Highlight Hub", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/HighLightMM2/main/Main"))()'},
-    {name = "Nexus Hub", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/NexusHub/main/Main"))()'},
-    {name = "Symphony Hub", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/Symphony-Hub/main/Main"))()'},
-    {name = "Highlight Hub (Lite for autofarm)", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/HighlightHubLight/main/Main"))()'},
-    {name = "Anti AFK", loadstring = 'loadstring(game:HttpGet("https://pastebin.com/raw/81e8th8J"))()'},
-    {name = "YARHM", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/yarhm/main/Main"))()'},
-    {name = "Overdrive H", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/OverdriveH-TEST-/main/Main"))()'},
-    {name = "RETH PRIV", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/OverdriveH-TEST-/main/Main"))()'}
+    {name = "Highlight Hub", description = "Highlight Hub is a great script for MM2.", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/HighLightMM2/main/Main"))()'},
+    {name = "Nexus Hub", description = "Nexus Hub offers advanced features.", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/NexusHub/main/Main"))()'},
+    {name = "Symphony Hub", description = "Symphony Hub provides comprehensive tools.", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/Symphony-Hub/main/Main"))()'},
+    {name = "Highlight Hub (Lite for autofarm)", description = "A lite version of Highlight Hub optimized for autofarm.", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/HighlightHubLight/main/Main"))()'},
+    {name = "Anti AFK", description = "Prevents you from being AFK kicked.", loadstring = 'loadstring(game:HttpGet("https://pastebin.com/raw/81e8th8J"))()'},
+    {name = "YARHM", description = "Yet Another Really Helpful Module.", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/yarhm/main/Main"))()'},
+    {name = "Overdrive H", description = "Overdrive H is an experimental script.", loadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSiick/OverdriveH-TEST-/main/Main"))()'}
 }
 
 for _, script in ipairs(scripts) do
-    scriptHubChannel:Button(script.name, function()
+    local server = win:Server(script.name, "")
+    local channel = server:Channel("Description")
+    
+    -- Adding description label
+    channel:Label(script.description)
+    
+    -- Adding button to execute script
+    channel:Button("Execute " .. script.name, function()
         loadstring(script.loadstring)()
         DiscordLib:Notification("Notification", script.name .. " executed!", "Okay!")
-        wait(1) -- Ajout du délai de 1 seconde après l'exécution du script
     end)
 end
 
